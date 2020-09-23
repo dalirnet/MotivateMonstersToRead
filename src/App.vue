@@ -6,19 +6,20 @@
 
 <style lang="scss">
 @font-face {
-    font-family: IRANSans;
+    font-family: IRANSansWeb;
     font-style: normal;
     font-weight: normal;
-    src: url('/fonts/eot/IRANSansWeb.eot');
-    src: url('/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/woff2/IRANSansWeb.woff2') format('woff2'), url('/fonts/woff/IRANSansWeb.woff') format('woff'),
-        url('/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+    src: url('/MotivateMonstersToRead/dist/fonts/eot/IRANSansWeb.eot');
+    src: url('/MotivateMonstersToRead/dist/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),
+        url('/MotivateMonstersToRead/dist/fonts/woff2/IRANSansWeb.woff2') format('woff2'),
+        url('/MotivateMonstersToRead/dist/fonts/woff/IRANSansWeb.woff') format('woff'),
+        url('/MotivateMonstersToRead/dist/fonts/ttf/IRANSansWeb.ttf') format('truetype');
 }
 
 body {
     direction: rtl;
     overflow: hidden;
-    font-family: IRANSans !important;
+    font-family: IRANSansWeb !important;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
 }
