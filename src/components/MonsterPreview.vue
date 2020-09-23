@@ -1,8 +1,8 @@
 <template>
     <div class="monster-preview">
         <div class="inner" :style="{ width: `${squareSize}px`, height: `${squareSize}px` }">
-            <img class="image" :src="`/monsters/${name}/${finished ? 'body' : 'face'}.svg`" />
-            <img class="name" :src="`/monsters/${name}/name.svg`" />
+            <img class="image" :src="`/MotivateMonstersToRead/dist/monsters/${name}/${finished ? 'body' : 'face'}.svg`" />
+            <img class="name" :src="`/MotivateMonstersToRead/dist/monsters/${name}/name.svg`" />
         </div>
     </div>
 </template>
@@ -77,7 +77,7 @@ export default {
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: url('/circle.svg');
+        background: url('/MotivateMonstersToRead/dist/circle.svg');
         background-size: cover;
         background-position: center;
         margin-top: -15vh;

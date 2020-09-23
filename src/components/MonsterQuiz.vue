@@ -8,9 +8,9 @@
                     :style="{ borderColor: monster.color }"
                     :to="{ name: 'Preview', params: { monster: name } }"
                 >
-                    <img class="image" :src="`/monsters/${name}/shadow.svg`" />
+                    <img class="image" :src="`/MotivateMonstersToRead/dist/monsters/${name}/shadow.svg`" />
                 </router-link>
-                <img class="name" :src="`/monsters/${name}/name.svg`" />
+                <img class="name" :src="`/MotivateMonstersToRead/dist/monsters/${name}/name.svg`" />
                 <span class="counter">
                     <small>{{ convertNumber(currenQuestion >= allQuestion ? allQuestion : currenQuestion + 1) }}</small>
                     <small :style="{ color: monster.color }"> / </small>
@@ -283,7 +283,7 @@ export default {
             height: 47px;
             align-items: center;
             justify-content: center;
-            background: url('/shape-w.svg') center no-repeat;
+            background: url('/MotivateMonstersToRead/dist/shape-w.svg') center no-repeat;
             color: #fff;
             margin: 10px;
             cursor: pointer;

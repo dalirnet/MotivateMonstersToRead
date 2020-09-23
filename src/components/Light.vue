@@ -38,7 +38,7 @@ export default {
     position: absolute;
     width: 0;
     height: 0;
-    background: url('/light.svg');
+    background: url('/MotivateMonstersToRead/dist/light.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

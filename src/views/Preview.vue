@@ -22,8 +22,8 @@
                 <img
                     :src="
                         !monster.finished && monster.name == $route.params.monster
-                            ? '/start.svg'
-                            : `/monsters/${monster.name}/${monster.finished ? 'body' : 'shadow'}.svg`
+                            ? '/MotivateMonstersToRead/dist/start.svg'
+                            : `/MotivateMonstersToRead/dist/monsters/${monster.name}/${monster.finished ? 'body' : 'shadow'}.svg`
                     "
                 />
             </router-link>
@@ -122,7 +122,7 @@ export default {
             height: 45px;
             align-items: center;
             justify-content: center;
-            background: url('/shape.svg') center no-repeat;
+            background: url('/MotivateMonstersToRead/dist/shape.svg') center no-repeat;
             margin: 6px;
 
             img {
@@ -130,7 +130,7 @@ export default {
             }
 
             &.active {
-                background: url('/shape-w.svg') center no-repeat;
+                background: url('/MotivateMonstersToRead/dist/shape-w.svg') center no-repeat;
 
                 img {
                     height: 22px;
