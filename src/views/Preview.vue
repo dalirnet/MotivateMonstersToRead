@@ -1,29 +1,58 @@
 <template>
     <div class="preview" :style="{ background }">
-        <div class="light" :style="{ width: `${squareSize}px`, height: `${squareSize}px` }"></div>
+        <Light />
         <MonsterPreview
             v-for="monster in monsters"
             :class="{ active: monster.name == $route.params.monster }"
             :key="monster.name"
             :name="monster.name"
+            :finished="monster.finished"
         />
+        <div class="navigation">
+            <router-link
+                class="item"
+                v-for="monster in monsters"
+                :class="{ active: monster.name == $route.params.monster }"
+                :key="monster.name"
+                :to="{
+                    name: !monster.finished && monster.name == $route.params.monster ? 'Quiz' : 'Preview',
+                    params: { monster: monster.name }
+                }"
+            >
+                <img
+                    :src="
+                        !monster.finished && monster.name == $route.params.monster
+                            ? '/start.svg'
+                            : `/monsters/${monster.name}/${monster.finished ? 'body' : 'shadow'}.svg`
+                    "
+                />
+            </router-link>
+        </div>
     </div>
 </template>
 
 <script>
 import _ from 'lodash'
+import Lockr from 'lockr'
 import Monsters from '@/db.json'
+import Light from '@/components/Light.vue'
 import MonsterPreview from '@/components/MonsterPreview.vue'
 
 export default {
     components: {
+        Light,
         MonsterPreview
     },
     data() {
         return {
-            monsters: _.map(Monsters, (value, name) => ({ name, color: value.color })),
-            background: '#cccccc',
-            squareSize: 0
+            monsters: _.map(Monsters, (value, name) => {
+                return {
+                    name,
+                    color: value.color,
+                    finished: Lockr.get(name, 0) === value.question.length
+                }
+            }),
+            background: '#cccccc'
         }
     },
     watch: {
@@ -34,20 +63,11 @@ export default {
     created() {
         this.changeBackground()
     },
-    mounted() {
-        this.changeSquareSize()
-        window.addEventListener('resize', this.changeSquareSize)
-    },
+
     methods: {
-        changeSquareSize() {
-            this.squareSize = (window.innerHeight > window.innerWidth ? window.innerHeight : window.innerWidth) * 1.5
-        },
         changeBackground() {
             this.background = _.find(this.monsters, { name: this.$route.params.monster }).color
         }
-    },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.changeSquareSize)
     }
 }
 </script>
@@ -64,24 +84,8 @@ export default {
     right: 0;
     transition: background 0.6s ease-in-out;
 
-    @keyframes light {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
     .light {
-        position: absolute;
-        width: 0;
-        height: 0;
-        background: url('/light.svg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        animation: light 60s linear infinite;
+        margin-top: -10vh;
     }
 
     .monster-preview {
@@ -97,6 +101,41 @@ export default {
         &.active {
             opacity: 1;
             pointer-events: all;
+        }
+    }
+
+    .navigation {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        width: 100%;
+        left: 0;
+        bottom: 5vh;
+
+        .item {
+            position: relative;
+            display: flex;
+            width: 110px;
+            height: 45px;
+            align-items: center;
+            justify-content: center;
+            background: url('/shape.svg') center no-repeat;
+            margin: 6px;
+
+            img {
+                height: 24px;
+            }
+
+            &.active {
+                background: url('/shape-w.svg') center no-repeat;
+
+                img {
+                    height: 22px;
+                }
+            }
         }
     }
 }
