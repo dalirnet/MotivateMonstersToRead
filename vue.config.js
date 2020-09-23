@@ -1,4 +1,5 @@
 module.exports = {
+    publicPath: '/MotivateMonstersToRead/dist/',
     pages: {
         index: {
             entry: 'src/main.js',
